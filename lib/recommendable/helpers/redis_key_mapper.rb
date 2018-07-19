@@ -47,6 +47,7 @@ module Recommendable
         # If the class or a superclass has been configured as ratable with <tt>recommends :class_name</tt>
         # then that ratable class is used to produce the namespace. Fall back on just using the given class.
         def ratable_namespace(klass)
+          return klass if klass.is_a?(String)
           klass = klass.ratable_class if klass.respond_to?(:ratable_class)
           klass.to_s.tableize
         end
